@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+  chatgpt:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - 'OPENAI_API_KEY=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'
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_v2
+    restart: always
+    ports: #This is used to map the container’s ports to the host machine.
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/certificates/:/etc/ssl/
+      - ./nginx/log/:/var/log/nginx/

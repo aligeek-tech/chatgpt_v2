@@ -2,8 +2,9 @@ version: '3'
 
 services:
   chatgpt:
+    container_name: chatgpt_v2
     build: .
-    ports:
-      - 3000:3000
+    expose: #This is used to map the container’s ports to the host machine.
+      - "3000"
     environment:
       - 'OPENAI_API_KEY=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'
